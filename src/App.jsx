@@ -5,6 +5,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Chat from "./pages/Chat.jsx";
 import NavBar from "./components/NavBar.jsx";
+import SignUp from "./components/SignUp.jsx";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );
