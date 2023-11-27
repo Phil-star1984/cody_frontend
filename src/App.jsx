@@ -6,6 +6,7 @@ import Home from "./pages/Home.jsx";
 import Chat from "./pages/Chat.jsx";
 import NavBar from "./components/NavBar.jsx";
 import SignUp from "./components/SignUp.jsx";
+import Login from "./components/Login.jsx";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
