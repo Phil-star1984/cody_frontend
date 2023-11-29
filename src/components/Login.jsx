@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Card,
   Input,
@@ -12,6 +14,7 @@ import {
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -24,20 +27,25 @@ export default function Login() {
     };
 
     try {
-      const signIn = await axios.post(
+      const response = await axios.post(
         "https://cody-app.onrender.com/auth/signin",
-        logIn
-        /* {
+        logIn,
+        {
           withCredentials: true,
-        } */
+        }
       );
 
-      if (signIn.status === 201) {
+      if (response.status === 200) {
         alert("You are now logged in!");
-        navigate("/home");
+        navigate("/");
+        window.location.reload();
       }
     } catch (error) {
-      console.error(error || "Registration failed");
+      setError(error.response.data.error);
+      /* console.log(error); */
+      console.log(error.response.data);
+      /* console.error(error || "Registration failed"); */
+      toast.error(error.response.data.error || "Invalid credentials");
     }
   };
 
@@ -58,6 +66,7 @@ export default function Login() {
       <Typography color="gray" className="mt-1 font-normal">
         Nice to meet you again! Enter your login details.
       </Typography>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <form
         className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         onSubmit={handleSubmit}
@@ -120,6 +129,7 @@ export default function Login() {
           </Link>
         </Typography>
       </form>
+      <ToastContainer />
     </Card>
   );
 }
