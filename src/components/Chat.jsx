@@ -37,47 +37,49 @@ function Chat() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-center mt-20 mb-5">
+      <div className="h-screen bg-[url('../src/assets/robot_background.jpg')] bg-hero bg-no-repeat bg-cover bg-center bg-fixed">
+        {/* <h1 className="text-3xl font-bold text-center mb-5">
         Hi, I am CODY. <br /> What's your question?
-      </h1>
-      <div className="mb-24">
-        {dialogList.map((dialog, index) => (
-          <div key={index} className="rounded p-2 flow-root">
-            <div className="user-message bg-gray-400 text-white p-3 rounded-md w-5/6 float-left">
-              <div className="flex items-center justify-start">
-                <AccountCircleIcon sx={{ fontSize: 25 }} className="mr-0.5" />
-                <p className="text-xs">{dialog.request.role}</p>
+      </h1> */}
+        <div className="mb-24 pt-28">
+          {dialogList.map((dialog, index) => (
+            <div key={index} className="rounded p-2 flow-root">
+              <div className="user-message bg-gray-400 text-white p-3 rounded-md w-5/6 float-left">
+                <div className="flex items-center justify-start">
+                  <AccountCircleIcon sx={{ fontSize: 25 }} className="mr-0.5" />
+                  <p className="text-xs">{dialog.request.role}</p>
+                </div>
+                <div>{dialog.request.content}</div>
               </div>
-              <div>{dialog.request.content}</div>
-            </div>
-            <div className="bot-response text-right mt-2 bg-gray-500 text-white p-3 rounded-md w-5/6 float-right">
-              <div className="flex items-center justify-end">
-                <AccountCircleIcon sx={{ fontSize: 25 }} className="mx-0.5" />
-                <p className="text-xs">{dialog.answer.role}</p>
+              <div className="bot-response text-right mt-2 bg-gray-500 text-white p-3 rounded-md w-5/6 float-right">
+                <div className="flex items-center justify-end">
+                  <AccountCircleIcon sx={{ fontSize: 25 }} className="mx-0.5" />
+                  <p className="text-xs">{dialog.answer.role}</p>
+                </div>
+                <div>{dialog.answer.content}</div>
               </div>
-              <div>{dialog.answer.content}</div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <form
-        onSubmit={handleClick}
-        className="fixed bottom-0 p-5 bg-gray-500 w-screen flex justify-center"
-      >
-        {/* <label className="block mb-2">What is your question</label> */}
-        <input
-          ref={inputRef}
-          placeholder="Your question"
-          className="border border-gray-300 rounded-md p-2 w-3/4 mr-3"
-        ></input>
-        <button
-          type="submit"
-          className="bg-red-500 text-white rounded-md font-bold px-5"
+        <form
+          onSubmit={handleClick}
+          className="fixed bottom-0 p-5 bg-gray-500 w-screen flex justify-center"
         >
-          Send
-        </button>
-      </form>
+          {/* <label className="block mb-2">What is your question</label> */}
+          <input
+            ref={inputRef}
+            placeholder="Your question"
+            className="border border-gray-300 rounded-md p-2 w-3/4 mr-3"
+          ></input>
+          <button
+            type="submit"
+            className="bg-red-500 text-white rounded-md font-bold px-5"
+          >
+            Send
+          </button>
+        </form>
+      </div>
     </>
   );
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Card,
   Input,
@@ -26,21 +28,22 @@ export default function SignUp() {
       email,
       password,
     };
+
     try {
-      const signUp = await axios.post(
+      const response = await axios.post(
         "https://cody-app.onrender.com/auth/signup",
-        newUser
-        /* {
+        newUser,
+        {
           withCredentials: true,
-        } */
+        }
       );
 
-      if (signUp.status === 201) {
-        alert("Welcome");
+      if (response.status === 201) {
+        toast.success("Successfully registered. Welcome!");
         navigate("/login");
       }
     } catch (error) {
-      console.error(error || "Registration failed");
+      toast.error(error.response.data.error || "Registration failed");
     }
   };
 

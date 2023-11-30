@@ -36,7 +36,8 @@ export default function Login() {
       );
 
       if (response.status === 200) {
-        alert("You are now logged in!");
+        /* alert("You are now logged in!"); */
+        toast.success("You are now logged in. Welcome!");
         navigate("/");
         window.location.reload();
       }
@@ -55,16 +56,17 @@ export default function Login() {
   } */
 
   return (
+    <div className="flex items-center justify-center h-screen bg-[url('../src/assets/cody_home.jpg')] bg-hero bg-no-repeat bg-cover bg-center bg-fixed">
     <Card
-      className="flex justify-center items-center h-screen"
+      className="bg-white p-8"
       color="transparent"
-      shadow={false}
+      shadow={true}
     >
       <Typography variant="h4" color="blue-gray">
         Login
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
-        Nice to meet you again! Enter your login details.
+        Nice to meet you! Enter your login details.
       </Typography>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form
@@ -131,5 +133,6 @@ export default function Login() {
       </form>
       <ToastContainer />
     </Card>
+    </div>
   );
 }
