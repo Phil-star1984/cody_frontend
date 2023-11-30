@@ -4,12 +4,12 @@ import { SocialIcon } from "react-social-icons";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../context/AuthProvider.jsx";
 
 function NavBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
+  const { isLoggedIn, setIsLoggedIn, user, setUser } = useAuth();
 
-  const checkLogin = async () => {
+  /* const checkLogin = async () => {
     try {
       const response = await axios.get(
         "https://cody-app.onrender.com/auth/me",
@@ -27,7 +27,7 @@ function NavBar() {
     } catch (error) {
       setIsLoggedIn(false);
     }
-  };
+  }; */
 
   const logOut = async () => {
     try {
@@ -50,9 +50,9 @@ function NavBar() {
     }
   };
 
-  useEffect(() => {
+  /*   useEffect(() => {
     checkLogin();
-  }, []);
+  }, []); */
 
   return (
     <>
