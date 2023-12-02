@@ -1,11 +1,14 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useAuth } from "../context/AuthProvider.jsx";
 
 function Chat() {
   const [dialogList, setDialogList] = useState([]);
+  const { user } = useAuth();
   const inputRef = useRef();
-  const user_name = "Phil";
+  const user_name = user.firstName;
+  const userId = user._id;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -14,7 +17,7 @@ function Chat() {
     axios
       .post("https://cody-app.onrender.com/chat/", {
         user_input: newRequest,
-        /* userId: "655e1e76ae55e0d25582aaad", */
+        userId: userId,
         role: "User",
         headers: {
           "Content-Type": "application/json",
@@ -32,31 +35,33 @@ function Chat() {
       })
       .catch((error) => console.log(error));
 
+    
     inputRef.current.value = "";
   };
 
+  console.log(dialogList);
   return (
     <>
-      <div className="h-screen bg-[url('../src/assets/robot_background.jpg')] bg-hero bg-no-repeat bg-cover bg-center bg-fixed">
+      <div className="bg-[url('../src/assets/cody_myprofile_02.jpg')] bg-hero bg-no-repeat bg-cover bg-center h-screen">
         {/* <h1 className="text-3xl font-bold text-center mb-5">
         Hi, I am CODY. <br /> What's your question?
       </h1> */}
-        <div className="mb-24 pt-28">
+        <div className="pt-28 pb-20">
           {dialogList.map((dialog, index) => (
             <div key={index} className="rounded p-2 flow-root">
-              <div className="user-message bg-gray-400 text-white p-3 rounded-md w-5/6 float-left">
+              <div className="user-message bg-gray-500 text-white p-3 rounded-md w-5/6 float-left shadow-xl">
                 <div className="flex items-center justify-start">
                   <AccountCircleIcon sx={{ fontSize: 25 }} className="mr-0.5" />
                   <p className="text-xs">{dialog.request.role}</p>
                 </div>
-                <div>{dialog.request.content}</div>
+                <div className="text-2xl">{dialog.request.content}</div>
               </div>
-              <div className="bot-response text-right mt-2 bg-gray-500 text-white p-3 rounded-md w-5/6 float-right">
+              <div className="bot-response text-right mt-2 bg-gray-600 text-white p-3 rounded-md w-5/6 float-right shadow-xl">
                 <div className="flex items-center justify-end">
                   <AccountCircleIcon sx={{ fontSize: 25 }} className="mx-0.5" />
                   <p className="text-xs">{dialog.answer.role}</p>
                 </div>
-                <div>{dialog.answer.content}</div>
+                <div className="text-2xl">{dialog.answer.content}</div>
               </div>
             </div>
           ))}
