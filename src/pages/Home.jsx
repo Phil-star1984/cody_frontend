@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider.jsx";
 
 function Home() {
+  const { isLoggedIn } = useAuth();
+
   return (
     <div className="grid grid-cols-1 gap-80 place-items-center mx-auto h-screen bg-[url('../src/assets/cody_home.jpg')] bg-hero bg-no-repeat bg-cover bg-center bg-fixed">
       <div className="fixed top-20 col-span-1">
@@ -17,18 +20,27 @@ function Home() {
         </div>
         <div>
           <h1 className="rounded-3xl py-1 px-4 drop-shadow-2xl text-xl text-center text-white font-bold">
-            Interactive AI tutorials for kids.
+            Interactive AI chat for kids.
             <br />
             Learn with Cody.
           </h1>
         </div>
         <div>
-          <Link
-            to="/signup"
-            className="text-xl text-center bg-white rounded-3xl py-0.5 px-7 border-2 border-black drop-shadow-2xl font-bold"
-          >
-            Start
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              to="/chat"
+              className="text-xl text-center bg-white rounded-3xl py-0.5 px-7 border-2 border-black drop-shadow-2xl font-bold"
+            >
+              Start Chat
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="text-xl text-center bg-white rounded-3xl py-0.5 px-7 border-2 border-black drop-shadow-2xl font-bold"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

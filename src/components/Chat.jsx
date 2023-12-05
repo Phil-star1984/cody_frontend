@@ -35,11 +35,10 @@ function Chat() {
       })
       .catch((error) => console.log(error));
 
-    
     inputRef.current.value = "";
   };
 
-  console.log(dialogList);
+  /* console.log(dialogList); */
   return (
     <>
       <div className="bg-[url('../src/assets/cody_myprofile_02.jpg')] bg-hero bg-no-repeat bg-cover bg-center h-screen">

@@ -42,7 +42,7 @@ function MyProfile() {
           <h1 className="text-2xl">
             Profile {user.firstName} {user.lastName}
           </h1>
-          <div className="mt-16 grid gap-2 text-left">
+          <div className="mt-6 md:mt-16 grid gap-2 text-left">
             <p className="bg-gray-300 p-1 rounded-md">
               First Name: {user.firstName}
             </p>
@@ -61,7 +61,7 @@ function MyProfile() {
         </Card>
         <Card className="bg-white md:col-span-2 rounded-md text-center p-5 md:ml-3">
           <h1 className="text-2xl">Your Chats</h1>
-          <div className="mt-16 grid gap-2 text-left">
+          <div className="mt-6 md:mt-16 grid gap-2 text-left">
             {userChats.map((chat, index) => (
               <div key={index} className="bg-gray-300 p-2 rounded-md">
                 <div className="text-xs flex">
