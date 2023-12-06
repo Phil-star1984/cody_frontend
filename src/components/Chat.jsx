@@ -41,13 +41,13 @@ function Chat() {
   /* console.log(dialogList); */
   return (
     <>
-      <div className="bg-[url('../src/assets/cody_myprofile_02.jpg')] bg-hero bg-no-repeat bg-cover bg-center h-screen">
+      <div className="bg-[url('../src/assets/cody_chat_01.jpg')] bg-hero bg-no-repeat bg-cover bg-center h-screen">
         {/* <h1 className="text-3xl font-bold text-center mb-5">
         Hi, I am CODY. <br /> What's your question?
       </h1> */}
-        <div className="pt-28 pb-20">
+        <div className="pb-20 md:p-8 lg:p-12 md:pt-28 lg:pt-28 pt-28">
           {dialogList.map((dialog, index) => (
-            <div key={index} className="rounded p-2 flow-root">
+            <div key={index} className="rounded p-4 flow-root">
               <div className="user-message bg-gray-500 text-white p-3 rounded-md w-5/6 float-left shadow-xl">
                 <div className="flex items-center justify-start">
                   <AccountCircleIcon sx={{ fontSize: 25 }} className="mr-0.5" />
